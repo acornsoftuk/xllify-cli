@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Luau, see **Install luau** section below.
+- Luau, see [Installing luau](#installing-luau) section below.
 
 ## Usage
 
