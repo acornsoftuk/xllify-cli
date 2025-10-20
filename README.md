@@ -1,21 +1,15 @@
 # xllify CLI
 
-A command-line interface for testing and interacting with xllify functions that can be used in Excel. The CLI provides an interactive shell and direct command execution for calling Luau-based functions with support for various data types. This is useful for testing functions out locally, with no other installation required.
+A command-line interface for local testing and interacting with xllify functions that can be used in Excel, once packaged by xllify. The CLI provides an interactive shell and direct command execution for calling Luau-based functions with support for various data types.
 
-## Features
+## Download
 
-- **Interactive Mode**: REPL-style interface with readline support (command history and line editing)
-- **Direct Command Execution**: Execute commands directly from the command line
-- **JSON Output**: Machine-readable output format for scripting and automation
-- **Function Management**: List, describe, and call registered functions
-- **Rich Data Types**: Support for numbers, strings, booleans, and multi-dimensional arrays
-- **Excel Formula Preview**: See equivalent Excel formulas when calling functions
-
-## Installation
-
-Download from the [releases](https://github.com/acornsoftuk/xllify-local/releases/tag/v1.0.0) page.
+- [Mac](https://storage.googleapis.com/xllify-action-assets/cli/xllify-cli-v1.0.26-macos.zip)
+- [Windows](https://storage.googleapis.com/xllify-action-assets/cli/xllify-cli-v1.0.26-windows.zip)
 
 ## Usage
+
+There's a simple testing framework described in [TESTING.md](TESTING.md)
 
 ### Interactive Mode
 
@@ -25,7 +19,7 @@ Start the interactive shell:
 xllify
 ```
 
-Or load a Luau file on startup:
+Or load a Luau file on startup: (you can specify --load multiple times)
 
 ```bash
 xllify --load functions.luau
@@ -179,10 +173,29 @@ call MyFunction true
 call MyFunction false
 ```
 
+### Arrays (1D)
+
+Use JSON-style square bracket syntax:
+
+```bash
+call MyFunction [1,2,3]
+call MyFunction [1.5,2.7,3.14]
+```
+
+### Arrays (2D)
+
+For multi-dimensional arrays, nest arrays in row-major order:
+
+```bash
+call MyFunction [[1,2],[3,4]]          # 2x2 matrix
+call MyFunction [[1,2,3],[4,5,6]]      # 2x3 matrix
+```
+
 ### Mixed Arguments
 
 ```bash
 call MyFunction 42 "text" true 3.14
+call MyFunction [1,2,3] "label" 100
 ```
 
 ## Output Formats
@@ -330,6 +343,7 @@ xllify --json list | jq '.[] | select(.category=="Math")'
 ## Platform Support
 
 - **macOS**: Full readline support with editline
+- **Linux**: Full readline support with GNU readline
 - **Windows**: Basic line editing (no readline history)
 
 ## Error Handling
@@ -359,7 +373,7 @@ xllify --json call NonExistent
 - `0`: Success
 - `1`: Error (function not found, invalid arguments, execution error, etc.)
 
-## Tips
+## Top tips
 
 1. **Use Tab Completion**: On macOS/Linux, readline provides command history navigation with up/down arrows
 2. **JSON for Scripts**: Use `--json` flag when calling from scripts for easier parsing
