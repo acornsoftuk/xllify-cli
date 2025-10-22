@@ -6,7 +6,7 @@ A command-line interface for local testing and interacting with xllify functions
 
 - [Mac](https://storage.googleapis.com/xllify-action-assets/cli/xllify-cli-v0.3.52-macos.zip)
 - [Windows](https://storage.googleapis.com/xllify-action-assets/cli/xllify-cli-v0.3.52-windows.zip)
-- 
+
 Unzip and copy it somewhere on your `PATH`. Readline support (autocomplete, command history etc) is available on Mac, coming soon for Windows.
 
 ## Usage
